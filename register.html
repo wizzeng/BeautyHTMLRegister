@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="src/style/style.css">
+    <script src="src/js/main.js"></script>
+</head>
+<body>
+<div class="card-container container-center">
+    <div class="left-banner">
+        <img src="./src/img/login_left_banner.jpg" alt="left-banner">
+    </div>
+    <div class="user-info-box">
+        <h1 class="title">用户注册</h1>
+        <div class="user-info-form">
+            <form id="register-form">
+                <div class="form-item">
+                    <label for="username">用户名:</label>
+                    <div class="input-item">
+                        <input type="text" id="username" name="username" placeholder="请输入用户名"/>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="password">密码：</label>
+                    <div class="input-item">
+                        <input type="password" id="password" name="password" placeholder="请输入密码"/>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="pass-confirm">确认密码：</label>
+                    <div class="input-item">
+                        <input type="password" id="pass-confirm" name="pass-confirm" placeholder="请重复输入密码"/>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="sex">性别:</label>
+                    <select name="sex" id="sex">
+                        <option value="secret">保密</option>
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label for="email">Email:</label>
+                    <div class="input-item">
+                        <input type="email" id="email" name="email" placeholder="请输入Email"/>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="address">地址:</label>
+                    <div class="input-item">
+                        <input type="text" id="address" name="address" placeholder="请输入地址"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="operate-btn">
+            <button type="button" id="register-btn">注册</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
