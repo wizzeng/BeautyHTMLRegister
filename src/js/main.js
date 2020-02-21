@@ -21,8 +21,8 @@ function validateForm() {
         },
         errorPlacement: function (error, element) {
             let inputItem = element.parent();
-            errorStack = error;
-            if(error[0].innerText !== ''){
+            errorStack = error[0].innerText === '' ? [] : [error[0].innerText];
+            if (error[0].innerText !== '') {
                 setTimeout(() => {
                     let tag = inputItem.children('span.error-text');
                     if (tag.length !== 0) {
@@ -39,12 +39,14 @@ function validateForm() {
                 }, 500)
             } else {
                 let tag = inputItem.children('span.error-text');
-                tag[0].classList = 'error-text error-text-left';
-                setTimeout(() => {
-                    for (let i = 0; i < tag.length; i++) {
-                        tag[i].remove();
-                    }
-                }, 300);
+                if (tag.length !== 0) {
+                    tag[0].classList = 'error-text error-text-left';
+                    setTimeout(() => {
+                        for (let i = 0; i < tag.length; i++) {
+                            tag[i].remove();
+                        }
+                    }, 300);
+                }
             }
         },
         rules: {
