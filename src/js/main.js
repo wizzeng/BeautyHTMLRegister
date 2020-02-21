@@ -1,8 +1,8 @@
 $().ready(() => {
     addFocusListener();
-    $('#register-btn').on('click', ()=>{
+    $('#register-btn').on('click', () => {
         validateForm();
-        if(errorStack.length === 0){
+        if (errorStack.length === 0) {
             alert('提交成功');
         }
     });
@@ -13,26 +13,39 @@ let errorStack = [];
 
 function validateForm() {
     $('#register-form').validate({
-        onkeyup: () => {
-            // 禁用 onInput 事件的 validate
+        onkeyup: false,
+        success: (error, el) => {
+            setTimeout(() => {
+                el.parentElement.classList = 'input-item input-item-focus'
+            }, 600)
         },
         errorPlacement: function (error, element) {
             let inputItem = element.parent();
             errorStack = error;
-            setTimeout(() => {
-                let tag = inputItem.children('span.error-text');
-                if (tag.length !== 0) {
-                    tag[0].classList = 'error-text error-text-left';
-                    setTimeout(() => {
-                        for (let i = 0; i < tag.length; i++) {
-                            tag[i].remove();
-                        }
+            if(error[0].innerText !== ''){
+                setTimeout(() => {
+                    let tag = inputItem.children('span.error-text');
+                    if (tag.length !== 0) {
+                        tag[0].classList = 'error-text error-text-left';
+                        setTimeout(() => {
+                            for (let i = 0; i < tag.length; i++) {
+                                tag[i].remove();
+                            }
+                            mountErrorText(inputItem, error[0].innerText);
+                        }, 500)
+                    } else {
                         mountErrorText(inputItem, error[0].innerText);
-                    }, 500)
-                } else {
-                    mountErrorText(inputItem, error[0].innerText);
-                }
-            }, 500)
+                    }
+                }, 500)
+            } else {
+                let tag = inputItem.children('span.error-text');
+                tag[0].classList = 'error-text error-text-left';
+                setTimeout(() => {
+                    for (let i = 0; i < tag.length; i++) {
+                        tag[i].remove();
+                    }
+                }, 300);
+            }
         },
         rules: {
             username: {
@@ -99,13 +112,13 @@ function addFocusListener() {
             backupPlaceholder[i] = (inputGroup[i].placeholder);
             inputGroup[i].placeholder = ''
         };
-        inputGroup[i].onchange = (event)=>{
-            if(event.target.value !== ''){
+        inputGroup[i].onchange = (event) => {
+            if (event.target.value !== '') {
                 inputBoxGroup[i].classList = 'input-item input-item-focus';
             }
         };
         inputGroup[i].onblur = (event) => {
-            if(event.target.value === ''){
+            if (event.target.value === '') {
                 inputBoxGroup[i].classList = 'input-item';
                 inputGroup[i].placeholder = backupPlaceholder[i];
             }
